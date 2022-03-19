@@ -6,7 +6,7 @@ The control system is two one-liners in the bash language and ssh server with no
 
 (Ansible automation coming soon)
 
-No-shell user preparation
+### No-shell user preparation
 * groupadd -g 1900 no-shell
 * useradd -m -g 1900 -u 1900 no-shell
 * passwd no-shell (for ansible automation)
@@ -16,7 +16,7 @@ No-shell user preparation
 * cp /home/no-shell/.ssh/id_rsa.pub /home/no-shell/.ssh/authorized_keys
 * ssh no-shell@openssh.example.com
 
-We need for clients configuration
+### We need for clients configuration
 * /home/no-shell/.ssh/id_rsa
 * last line in file ~/.ssh/known_hosts
 
