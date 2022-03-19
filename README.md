@@ -19,6 +19,7 @@ We need for clients configuration
 
 ## Client (user and helpdesk) configuration
 
+* dnf or apt install x11vnc zenity tigervnc
 * cp id_rsa /usr/local/etc/
 * chown nobody /usr/loca/etc/id_rsa
 * cd /usr/share/applications/
