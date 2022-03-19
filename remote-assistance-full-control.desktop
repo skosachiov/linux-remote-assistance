@@ -1,6 +1,6 @@
 [Desktop Entry]
 Type=Application
 Name=Remote Assistance Full control
-Exec=env SSHSERVER=pmfabrika.mooo.com /bin/bash -c 'pass=$((32767+$RANDOM)); port=$((32767+$RANDOM)); echo $port,$pass; disp=$(echo $DISPLAY|grep -o ":[0-9]*"); (x11vnc -bg -passwd $pass -rfbport $port -display $disp > /dev/null 2>&1); (/usr/bin/ssh -N -i /usr/local/etc/id_rsa -R $port:localhost:$port no-shell@$SSHSERVER &); sleep 1; if [ "$(pidof ssh)" == "" ]; then zenity --info --text="<span font=\"16\">No connection</span>" --ok-label="Exit"; else zenity --info --text="<span font=\"16\">Connection has been established\nID=$port, PIN=$pass</span>" --ok-label="Disconnect"; fi; killall x11vnc; killall ssh'
+Exec=env SSHSERVER=openssh.example.com /bin/bash -c 'pass=$((32767+$RANDOM)); port=$((32767+$RANDOM)); echo $port,$pass; disp=$(echo $DISPLAY|grep -o ":[0-9]*"); (x11vnc -bg -passwd $pass -rfbport $port -display $disp > /dev/null 2>&1); (/usr/bin/ssh -N -i /usr/local/etc/id_rsa -R $port:localhost:$port no-shell@$SSHSERVER &); sleep 1; if [ "$(pidof ssh)" == "" ]; then zenity --info --text="<span font=\"16\">No connection</span>" --ok-label="Exit"; else zenity --info --text="<span font=\"16\">Connection has been established\nID=$port, PIN=$pass</span>" --ok-label="Disconnect"; fi; killall x11vnc; killall ssh'
 Icon=audio-headset
 StartupNotify=false
