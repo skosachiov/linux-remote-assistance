@@ -4,9 +4,12 @@ The control system is two one-liners in the bash language and ssh server with no
 
 ## Server configuration
 
+(Ansible automation coming soon)
+
 No-shell user preparation
 * groupadd -g 1900 no-shell
 * useradd -m -g 1900 -u 1900 no-shell
+* passwd no-shell (for ansible automation)
 * su - no-shell
 * ssh-keygen
 * exit
@@ -18,6 +21,8 @@ We need for clients configuration
 * last line in file ~/.ssh/known_hosts
 
 ## Client (user and helpdesk) configuration
+
+(Ansible automation coming soon)
 
 * dnf or apt install x11vnc zenity tigervnc
 * cp id_rsa /usr/local/etc/
