@@ -1,0 +1,16 @@
+- name: Create no-shell user
+  block:
+    - name: Create no-shell user Useradd
+      user:
+        name: no-shell
+        shell: /bin/false
+        append: yes
+        generate_ssh_key: yes
+    - name: Create no-shell user Add cert to authorized keys
+      authorized_key:
+        user: no-shell
+        state: present
+        key: /home/no-user/.ssh/id_rsa.pub
+  tags:
+    - server
+    - create_no_shell_user
