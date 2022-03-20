@@ -52,7 +52,7 @@
             state: present
         - name: Ensure openssh-server is installed Started
           service:
-            name: openssh-server
+            name: sshd
             state: started
       tags:
         - server
@@ -111,7 +111,6 @@
         - client
         - install_client_desktop_files
 
-
-    # TODO - server_rollback
-    # TODO - client_rollback
+# TODO - server_rollback
+# TODO - client_rollback
         
