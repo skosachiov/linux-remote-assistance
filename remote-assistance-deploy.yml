@@ -14,3 +14,29 @@
   tags:
     - server
     - create_no_shell_user
+    
+- name: Ensure openssh-server is installed
+  block:
+    - name: Ensure openssh-server is installed Package
+      package:
+        name: openssh-server
+        state: present
+    - name: Ensure openssh-server is installed Started
+      service:
+        name: openssh-server
+        state: started
+  tags:
+    - server
+    - openssh_server_is_started
+
+- name: Install client dependencies
+  package:
+    name:
+      - x11vnc
+      - tigervnc
+      - zenity
+    state: present
+  tags:
+    - client
+    - install_client_dependencies
+
