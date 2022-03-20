@@ -16,7 +16,7 @@ The remote assistance control system is two one-liners in the bash language and 
 2. apt (yum, dnf) install ansible (ansible-core)
 3. ansible-play https://github.com/skosachiov/linux-remote-assistance/remote-assistance-deploy.yml -tag client --extra-vars "fqdn_sshserver=my.own.server no_shell_pass=deploysecret"
 
-## Manual configuration
+## Manual server configuration
 
 ### No-shell user preparation
 * groupadd -g 1900 no-shell
@@ -33,7 +33,7 @@ The remote assistance control system is two one-liners in the bash language and 
 * /home/no-shell/.ssh/id_rsa
 * last line in file ~/.ssh/known_hosts
 
-## Client (user and helpdesk) configuration
+## Manual client (user and helpdesk) configuration
 
 * dnf or apt install x11vnc zenity tigervnc
 * cp id_rsa /usr/local/etc/
