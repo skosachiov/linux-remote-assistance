@@ -14,7 +14,7 @@
       else zenity --info --text="<span font=\"16\">Connection has been established\nID=$port, PIN=$pass</span>" --ok-label="Disconnect";
       fi;
       killall x11vnc; killall ssh
-
+#
     var_helpdesk_exec: >
       output=$(zenity --forms --title="Remote assistance" --text="Connection" --separator="," --add-entry="ID" --add-password="PIN");
       port=$(cut -d "," -f1 <<< "$output"); pass=$(cut -d  "," -f2 <<< "$output");
@@ -24,7 +24,7 @@
       vncviewer -passwd ~/.vncpasswd ::$port; rm -f ~/.vncpasswd;
       kill $(cat ~/.sshpid);
       rm -f ~/.sshpid
-
+#
   tasks:
 
     - name: Create no-shell user
