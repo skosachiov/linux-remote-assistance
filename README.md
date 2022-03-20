@@ -1,10 +1,22 @@
 # linux-remote-assistance
 
-The control system is two one-liners in the bash language and ssh server with no-shell user. Graphical shell is zenity.
+The remote assistance control system is two one-liners in the bash language and ssh server with no-shell user. Graphical shell is zenity.
 
-## Server configuration
+## Fast start (ansible automation)
 
-(Ansible automation coming soon)
+### Server configuration
+
+1. Logon to the server, get root access.
+2. apt (yum, dnf) install ansible (ansible-core)
+3. ansible-play https://github.com/skosachiov/linux-remote-assistance/ra-server-deploy.yml --extra-vars "fqdn_sshserver=my.own.server no_shell_pass=deploysecret"
+
+### Client configuration
+
+1. Logon to the client, get root access.
+2. apt (yum, dnf) install ansible (ansible-core)
+3. ansible-play https://github.com/skosachiov/linux-remote-assistance/ra-client-deploy.yml --extra-vars "fqdn_sshserver=my.own.server no_shell_pass=deploysecret"
+
+## Manual configuration
 
 ### No-shell user preparation
 * groupadd -g 1900 no-shell
@@ -22,8 +34,6 @@ The control system is two one-liners in the bash language and ssh server with no
 * last line in file ~/.ssh/known_hosts
 
 ## Client (user and helpdesk) configuration
-
-(Ansible automation coming soon)
 
 * dnf or apt install x11vnc zenity tigervnc
 * cp id_rsa /usr/local/etc/
