@@ -14,7 +14,7 @@
   tags:
     - server
     - create_no_shell_user
-    
+
 - name: Ensure openssh-server is installed
   block:
     - name: Ensure openssh-server is installed Package
@@ -40,3 +40,6 @@
     - client
     - install_client_dependencies
 
+# TODO - server_rollback
+# TODO - client_rollback
+    
