@@ -1,6 +1,8 @@
-# linux-remote-assistance
+# Linux remote assistance
 
 The remote assistance control system is two one-liners in the bash language and ssh server with no-shell user. Graphical shell is zenity.
+
+![Linux remote assistance](https://github.com/skosachiov/linux-remote-assistance/raw/main/remote-assistance-scheme.png)
 
 ## Fast start (ansible automation)
 
