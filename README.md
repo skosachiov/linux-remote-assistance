@@ -13,6 +13,7 @@ The control system is two one-liners in the bash language and ssh server with no
 * su - no-shell
 * ssh-keygen
 * exit
+* usermod --shell /bin/false no-shell
 * cp /home/no-shell/.ssh/id_rsa.pub /home/no-shell/.ssh/authorized_keys
 * ssh no-shell@openssh.example.com
 
