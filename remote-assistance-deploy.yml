@@ -84,10 +84,10 @@
           shell: sshpass -p '{{no_shell_pass}}' ssh -N -o StrictHostKeyChecking=no no-shell@{{fqdn_sshserver}} "/bin/false"
           failed_when: false
           register: item
-        - name: Init known hosts Shell
+        - name: Init known hosts Check
           debug:
             msg: "{{item}}"
-          failed_when: '"Permanently added" not in "{{item.stderr_lines}}"'
+          failed_when: '"Permanently added" not in "{{item.stderr}}"'
       tags:
         - client
         - init_known_hosts
