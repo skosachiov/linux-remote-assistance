@@ -39,7 +39,7 @@
           authorized_key:
             user: no-shell
             state: present
-            key: /home/no-shell/.ssh/id_rsa.pub
+            key: "{{ lookup('file', '/home/no-shell/.ssh/id_rsa.pub') }}"
       tags:
         - server
         - create_no_shell_user
