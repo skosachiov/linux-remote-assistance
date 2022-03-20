@@ -8,13 +8,13 @@ The remote assistance control system is two one-liners in the bash language and 
 
 1. Logon to the server, get root access.
 2. apt (yum, dnf) install ansible (ansible-core)
-3. ansible-play https://github.com/skosachiov/linux-remote-assistance/ra-server-deploy.yml --extra-vars "fqdn_sshserver=my.own.server no_shell_pass=deploysecret"
+3. ansible-play https://github.com/skosachiov/linux-remote-assistance/remote-assistance-deploy.yml -tag server --extra-vars "fqdn_sshserver=my.own.server no_shell_pass=deploysecret"
 
 ### Client configuration
 
 1. Logon to the client, get root access.
 2. apt (yum, dnf) install ansible (ansible-core)
-3. ansible-play https://github.com/skosachiov/linux-remote-assistance/ra-client-deploy.yml --extra-vars "fqdn_sshserver=my.own.server no_shell_pass=deploysecret"
+3. ansible-play https://github.com/skosachiov/linux-remote-assistance/remote-assistance-deploy.yml -tag client --extra-vars "fqdn_sshserver=my.own.server no_shell_pass=deploysecret"
 
 ## Manual configuration
 
