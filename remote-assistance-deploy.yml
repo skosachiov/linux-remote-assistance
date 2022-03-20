@@ -58,18 +58,6 @@
         - server
         - openssh_server_is_started
 
-    - name: Copy no-shell key
-      block:
-        - name: Copy no-shell key Scp
-          shell: sshpass -p '{{no_shell_pass}}' scp -o StrictHostKeyChecking=no no-shell@{{fqdn_sshserver}}:/home/no-shell/.ssh/id_rsa /usr/local/etc/
-        - name: Copy no-shell key Chown
-          file:
-            path: /usr/local/etc/id_rsa
-            owner: nobody
-      tags:
-        - client
-        - copy_no_shell_key
-
     - name: Install client dependencies
       block:
         - name: Install client dependencies x11
@@ -77,6 +65,7 @@
             name:
               - x11vnc
               - zenity
+              - sshpass
             state: present
         - name: Install client dependencies Tigervnc rpm
           package:
@@ -93,6 +82,18 @@
       tags:
         - client
         - install_client_dependencies
+
+    - name: Copy no-shell key
+      block:
+        - name: Copy no-shell key Scp
+          shell: sshpass -p '{{no_shell_pass}}' scp -o StrictHostKeyChecking=no no-shell@{{fqdn_sshserver}}:/home/no-shell/.ssh/id_rsa /usr/local/etc/
+        - name: Copy no-shell key Chown
+          file:
+            path: /usr/local/etc/id_rsa
+            owner: nobody
+      tags:
+        - client
+        - copy_no_shell_key
 
     - name: Install client desktop files
       block:
