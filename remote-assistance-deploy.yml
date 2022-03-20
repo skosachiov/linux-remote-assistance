@@ -7,7 +7,7 @@
       port=$((32767+$RANDOM));
       disp=$(echo $DISPLAY|grep -o ":[0-9]*");
       (x11vnc -bg {{var_view_only}} -passwd $pass -rfbport $port -display $disp > /dev/null 2>&1);
-      (/usr/bin/ssh -N -i /usr/local/etc/id_rsa -R $port:localhost:$port no-shell@{{fqdn_sshserver}} &);
+      (sshpass -p {{no_shell_pass}} /usr/bin/ssh -N -R $port:localhost:$port no-shell@{{fqdn_sshserver}} &);
       sleep 2;
       if [ "$(pidof ssh)" == "" ];
       then zenity --info --text="<span font=\"16\">No connection</span>" --ok-label="Exit";
@@ -18,7 +18,7 @@
     var_helpdesk_exec: >-
       output=$(zenity --forms --title="Remote assistance" --text="Connection" --separator="," --add-entry="ID" --add-password="PIN");
       port=$(cut -d "," -f1 <<< "$output"); pass=$(cut -d  "," -f2 <<< "$output");
-      (ssh -N -i /usr/local/etc/id_rsa -L $port:localhost:$port no-shell@{{fqdn_sshserver}} & echo $! > ~/.sshpid);
+      (sshpass -p {{no_shell_pass}} ssh -N -L $port:localhost:$port no-shell@{{fqdn_sshserver}} & echo $! > ~/.sshpid);
       sleep 2;
       (echo $pass | vncpasswd -f > ~/.vncpasswd);
       vncviewer -passwd ~/.vncpasswd ::$port; rm -f ~/.vncpasswd;
@@ -35,11 +35,6 @@
             shell: /bin/false
             password: "{{ no_shell_pass | password_hash('sha512') }}" 
             generate_ssh_key: yes
-        - name: Create no-shell user Add cert to authorized keys
-          authorized_key:
-            user: no-shell
-            state: present
-            key: "{{ lookup('file', '/home/no-shell/.ssh/id_rsa.pub') }}"
       tags:
         - server
         - create_no_shell_user
@@ -83,17 +78,11 @@
         - client
         - install_client_dependencies
 
-    - name: Copy no-shell key
-      block:
-        - name: Copy no-shell key Scp
-          shell: sshpass -p '{{no_shell_pass}}' scp -o StrictHostKeyChecking=no no-shell@{{fqdn_sshserver}}:/home/no-shell/.ssh/id_rsa /usr/local/etc/
-        - name: Copy no-shell key Chown
-          file:
-            path: /usr/local/etc/id_rsa
-            owner: nobody
+    - name: Init known hosts
+      shell: sshpass -p '{{no_shell_pass}}' ssh -o StrictHostKeyChecking=no no-shell@{{fqdn_sshserver}}
       tags:
         - client
-        - copy_no_shell_key
+        - init_known_hosts
 
     - name: Install client desktop files
       block:
@@ -139,7 +128,4 @@
       tags:
         - client
         - install_client_desktop_files
-
-# TODO - server_rollback
-# TODO - client_rollback
         
