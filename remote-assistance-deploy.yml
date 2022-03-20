@@ -79,7 +79,7 @@
         - install_client_dependencies
 
     - name: Init known hosts
-      shell: sshpass -p '{{no_shell_pass}}' ssh -o StrictHostKeyChecking=no no-shell@{{fqdn_sshserver}} "/bin/false"
+      shell: sshpass -p '{{no_shell_pass}}' ssh -N -o StrictHostKeyChecking=no no-shell@{{fqdn_sshserver}} "/bin/false"
       tags:
         - client
         - init_known_hosts
