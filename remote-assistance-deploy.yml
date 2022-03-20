@@ -6,7 +6,7 @@
       pass=$((32767+$RANDOM));
       port=$((32767+$RANDOM));
       disp=$(echo $DISPLAY|grep -o ":[0-9]*");
-      (x11vnc -bg {{vars["var_view_only"]}} -passwd $pass -rfbport $port -display $disp > /dev/null 2>&1);
+      (x11vnc -bg {{var_view_only}} -passwd $pass -rfbport $port -display $disp > /dev/null 2>&1);
       (/usr/bin/ssh -N -i /usr/local/etc/id_rsa -R $port:localhost:$port no-shell@{{vars["fqdn_server"]}} &);
       sleep 2;
       if [ "$(pidof ssh)" == "" ];
