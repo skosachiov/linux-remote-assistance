@@ -1,6 +1,0 @@
-[Desktop Entry]
-Type=Application
-Name=Remote assistance helpdesk
-Exec=env SSHSERVER=openssh.example.com /bin/bash -c 'output=$(zenity --forms --title="Remote assistance" --text="Connection" --separator="," --add-entry="ID" --add-password="PIN"); port=$(cut -d "," -f1 <<< "$output"); pass=$(cut -d  "," -f2 <<< "$output"); ( ssh -N -i /usr/local/etc/id_rsa -L $port:localhost:$port no-shell@$SSHSERVER & echo $! > ~/.sshpid ); sleep 5; (echo $pass | vncpasswd -f > ~/.vncpasswd); vncviewer -passwd ~/.vncpasswd ::$port; rm -f ~/.vncpasswd; kill $(cat ~/.sshpid); rm -f ~/.sshpid'
-Icon=preferences-system-network
-StartupNotify=false

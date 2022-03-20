@@ -66,12 +66,14 @@
           package:
             name:
               - tigervnc
+              - tigervnc-server-minimal
             state: present
           when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
         - name: Install client dependencies Tigervnc deb
           package:
             name:
               - tigervnc-viewer
+              - tigervnc-common
             state: present
           when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
       tags:

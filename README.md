@@ -6,40 +6,16 @@ The remote assistance control system is two one-liners in the bash language and 
 
 ### Server configuration
 
-1. Logon to the server, get root access.
+1. Logon to the server and get root access
 2. apt install git ansible (Ubuntu 20.04) or dnf install git ansible (RHEL 8, Centos 8, Oracle linux 8)
 3. echo "localhost ansible_connection=local" >> /etc/ansible/hosts
-4. ansible-play https://github.com/skosachiov/linux-remote-assistance/remote-assistance-deploy.yml -tag server --extra-vars "fqdn_sshserver=my.own.server no_shell_pass=deploysecret"
+4. ansible-pull --tag server --extra-vars "fqdn_sshserver=my.ssh.example.com no_shell_pass=deploysecret" -U https://github.com/skosachiov/linux-remote-assistance
 
 ### Client configuration
 
-1. Logon to the client, get root access.
+1. Logon to the client and get root access
 2. apt install git ansible (Ubuntu 20.04) or dnf install git ansible (RHEL 8, Centos 8, Oracle linux 8)
 3. echo "localhost ansible_connection=local" >> /etc/ansible/hosts
-4. ansible-play https://github.com/skosachiov/linux-remote-assistance/remote-assistance-deploy.yml -tag client --extra-vars "fqdn_sshserver=my.own.server no_shell_pass=deploysecret"
+4. ansible-pull --tag client --extra-vars "fqdn_sshserver=my.ssh.example.com no_shell_pass=deploysecret" -U https://github.com/skosachiov/linux-remote-assistance
 
-## Manual server configuration
 
-### No-shell user preparation
-* groupadd -g 1900 no-shell
-* useradd -m -g 1900 -u 1900 no-shell
-* passwd no-shell (for ansible automation)
-* su - no-shell
-* ssh-keygen
-* exit
-* usermod --shell /bin/false no-shell
-* cp /home/no-shell/.ssh/id_rsa.pub /home/no-shell/.ssh/authorized_keys
-* ssh no-shell@openssh.example.com
-
-### We need for clients configuration
-* /home/no-shell/.ssh/id_rsa
-* last line in file ~/.ssh/known_hosts
-
-## Manual client (user and helpdesk) configuration
-
-* dnf or apt install x11vnc zenity tigervnc
-* cp id_rsa /usr/local/etc/
-* chown nobody /usr/loca/etc/id_rsa
-* cd /usr/share/applications/
-* wget this repo *.desktop files
-* sed -i "s/openssh.example.com/your.server/g" remote-assistance-*
