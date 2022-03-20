@@ -86,7 +86,7 @@
       block:
         - name: Install client desktop files Full control
           set_fact:
-            var_view_only = ""
+            var_view_only: ""
         - name: Install client desktop files Full control
           copy:
             dest: /usr/share/applications/remote-assistance-full-control.desktop
@@ -99,7 +99,7 @@
               StartupNotify=false
         - name: Install client desktop files View only
           set_fact:
-            var_view_only = "--viewonly"
+            var_view_only: "--viewonly"
         - name: Install client desktop files View only
           copy:
             dest: /usr/share/applications/remote-assistance-view-only.desktop
