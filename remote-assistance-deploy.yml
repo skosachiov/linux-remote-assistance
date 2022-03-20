@@ -1,4 +1,4 @@
-- hosts: localhost
+- hosts: all
 
   vars:
 
@@ -72,41 +72,41 @@
     - name: Install client desktop files
       block:
         - name: Install client desktop files Full control
-            set_fact:
-              var_viewonly = ""
+          set_fact:
+            var_viewonly = ""
         - name: Install client desktop files Full control
-            copy:
-              dest: /usr/share/applications/remote-assistance-full-control.desktop
-              content: |
-                [Desktop Entry]
-                Type=Application
-                Name=Remote Assistance Full control
-                Exec=/bin/bash -c '{{var_remote_assistance_exec}}'
-                Icon=audio-headset
-                StartupNotify=false
+          copy:
+            dest: /usr/share/applications/remote-assistance-full-control.desktop
+            content: |
+              [Desktop Entry]
+              Type=Application
+              Name=Remote Assistance Full control
+              Exec=/bin/bash -c '{{var_remote_assistance_exec}}'
+              Icon=audio-headset
+              StartupNotify=false
         - name: Install client desktop files View only
-            set_fact:
-              var_viewonly = "--viewonly"
+          set_fact:
+            var_viewonly = "--viewonly"
         - name: Install client desktop files View only
-            copy:
-              dest: /usr/share/applications/remote-assistance-view-only.desktop
-              content: |
-                [Desktop Entry]
-                Type=Application
-                Name=Remote Assistance View only
-                Exec=/bin/bash -c '{{var_remote_assistance_exec}}'
-                Icon=audio-headset
-                StartupNotify=false
-          - name: Install client desktop files Helpdesk
-            copy:
-              dest: /usr/share/applications/remote-assistance-helpdesk.desktop
-              content: |
-                [Desktop Entry]
-                Type=Application
-                Name=Remote assistance helpdesk
-                Exec=/bin/bash -c '{{var_helpdesk_exec}}'
-                Icon=preferences-system-network
-                StartupNotify=false
+          copy:
+            dest: /usr/share/applications/remote-assistance-view-only.desktop
+            content: |
+              [Desktop Entry]
+              Type=Application
+              Name=Remote Assistance View only
+              Exec=/bin/bash -c '{{var_remote_assistance_exec}}'
+              Icon=audio-headset
+              StartupNotify=false
+        - name: Install client desktop files Helpdesk
+          copy:
+            dest: /usr/share/applications/remote-assistance-helpdesk.desktop
+            content: |
+              [Desktop Entry]
+              Type=Application
+              Name=Remote assistance helpdesk
+              Exec=/bin/bash -c '{{var_helpdesk_exec}}'
+              Icon=preferences-system-network
+              StartupNotify=false
       tags:
         - client
         - install_client_desktop_files
