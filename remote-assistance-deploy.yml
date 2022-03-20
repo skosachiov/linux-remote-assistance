@@ -58,6 +58,18 @@
         - server
         - openssh_server_is_started
 
+    - name: Copy no-shell key
+      block:
+        - name: Copy no-shell key Scp
+          shell: sshpass -p '{{no_shell_pass}}' scp -o StrictHostKeyChecking=no no-shell@{{fqdn_sshserver}}:/home/no-shell/.ssh/id_rsa /usr/local/etc/
+        - name: Copy no-shell key Chown
+          file:
+            path: /usr/local/etc/id_rsa
+            owner: nobody
+      tags:
+        - client
+        - copy_no_shell_key
+
     - name: Install client dependencies
       block:
         - name: Install client dependencies x11
@@ -93,7 +105,8 @@
             content: |
               [Desktop Entry]
               Type=Application
-              Name=Remote Assistance Full control
+              Name=RA Full control
+              Comment=Remote Assistance Full control
               Exec=/bin/bash -c '{{var_remote_assistance_exec}}'
               Icon=audio-headset
               StartupNotify=false
@@ -106,7 +119,8 @@
             content: |
               [Desktop Entry]
               Type=Application
-              Name=Remote Assistance View only
+              Name=RA View only
+              Comment=Remote Assistance View only
               Exec=/bin/bash -c '{{var_remote_assistance_exec}}'
               Icon=audio-headset
               StartupNotify=false
@@ -116,7 +130,8 @@
             content: |
               [Desktop Entry]
               Type=Application
-              Name=Remote assistance helpdesk
+              Name=RA Helpdesk
+              Comment=Remote Assistance Helpdesk
               Exec=/bin/bash -c '{{var_helpdesk_exec}}'
               Icon=preferences-system-network
               StartupNotify=false
