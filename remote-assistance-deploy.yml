@@ -81,12 +81,12 @@
     - name: Init known hosts
       block:
         - name: Init known hosts Shell
-          shell: sshpass -p '{{no_shell_pass}}' ssh -N -o StrictHostKeyChecking=no no-shell@{{fqdn_sshserver}} "/bin/false"
+          shell: sshpass -p '{{no_shell_pass}}' ssh -o StrictHostKeyChecking=no no-shell@{{fqdn_sshserver}} "/bin/false"
           failed_when: false
-          register: item
-        - name: Init known hosts Check
-          debug:
-            msg: "{{item}}"
+        - name: Init known hosts Copy
+          copy:
+            src: ~/.ssh/known_hosts
+            dest: /etc/ssh/known_hosts
       tags:
         - client
         - init_known_hosts
