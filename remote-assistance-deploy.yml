@@ -59,12 +59,25 @@
         - openssh_server_is_started
 
     - name: Install client dependencies
-      package:
-        name:
-          - x11vnc
-          - tigervnc
-          - zenity
-        state: present
+      block:
+        - name: Install client dependencies x11
+          package:
+            name:
+              - x11vnc
+              - zenity
+            state: present
+        - name: Install client dependencies Tigervnc rpm
+          package:
+            name:
+              - tigervnc
+            state: present
+          when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+        - name: Install client dependencies Tigervnc deb
+          package:
+            name:
+              - tigervnc-viewer
+            state: present
+          when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
       tags:
         - client
         - install_client_dependencies
