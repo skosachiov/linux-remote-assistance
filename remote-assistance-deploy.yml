@@ -7,7 +7,7 @@
       port=$((32767+$RANDOM));
       disp=$(echo $DISPLAY|grep -o ":[0-9]*");
       (x11vnc -bg {{var_view_only}} -passwd $pass -rfbport $port -display $disp > /dev/null 2>&1);
-      (/usr/bin/ssh -N -i /usr/local/etc/id_rsa -R $port:localhost:$port no-shell@{{fqdn_server}} &);
+      (/usr/bin/ssh -N -i /usr/local/etc/id_rsa -R $port:localhost:$port no-shell@{{fqdn_sshserver}} &);
       sleep 2;
       if [ "$(pidof ssh)" == "" ];
       then zenity --info --text="<span font=\"16\">No connection</span>" --ok-label="Exit";
@@ -18,7 +18,7 @@
     var_helpdesk_exec: >
       output=$(zenity --forms --title="Remote assistance" --text="Connection" --separator="," --add-entry="ID" --add-password="PIN");
       port=$(cut -d "," -f1 <<< "$output"); pass=$(cut -d  "," -f2 <<< "$output");
-      (ssh -N -i /usr/local/etc/id_rsa -L $port:localhost:$port no-shell@{{fqdn_server}} & echo $! > ~/.sshpid);
+      (ssh -N -i /usr/local/etc/id_rsa -L $port:localhost:$port no-shell@{{fqdn_sshserver}} & echo $! > ~/.sshpid);
       sleep 2;
       (echo $pass | vncpasswd -f > ~/.vncpasswd);
       vncviewer -passwd ~/.vncpasswd ::$port; rm -f ~/.vncpasswd;
