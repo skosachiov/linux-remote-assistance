@@ -87,7 +87,6 @@
         - name: Init known hosts Check
           debug:
             msg: "{{item}}"
-          failed_when: '"Permanently added" not in item.stderr'
       tags:
         - client
         - init_known_hosts
