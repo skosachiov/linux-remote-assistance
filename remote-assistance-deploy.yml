@@ -33,7 +33,7 @@
           user:
             name: no-shell
             shell: /bin/false
-            password: "{{ '{{no_shell_pass}}' | password_hash('sha512') }}" 
+            password: "{{ no_shell_pass | password_hash('sha512') }}" 
             generate_ssh_key: yes
         - name: Create no-shell user Add cert to authorized keys
           authorized_key:
