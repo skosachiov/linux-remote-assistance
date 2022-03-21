@@ -1,5 +1,6 @@
 # Linux remote assistance
-The remote assistance control system is two one-liners in the bash language and ssh server with no-shell user. Graphical shell is zenity.
+
+The ansible code produces desktop files in the /usr/share/applications/ folder and creates server no-shell user. Desktop files contain one-liners bash Exec. Desktop files allow in automatic mode to connect reverse and forward ports over ssh for telework and helpdesk users, telework launches x11vnc with a pin code, helpdesk "sees" telework vnc on helpdesk local port. Forward ports through the server allows you to provide assistance behind NAT. Graphical shell is zenity. Dependences are x11vnc, tigervnc, sshpasswd.
 
 ![Linux remote assistance](https://github.com/skosachiov/linux-remote-assistance/raw/main/remote-assistance-scheme.png)
 
