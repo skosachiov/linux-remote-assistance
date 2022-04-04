@@ -28,4 +28,11 @@ Tested on Ubunru 20.04 and Centos Stream 8.
 3. echo "localhost ansible_connection=local" >> /etc/ansible/hosts
 4. ansible-pull --tag client --extra-vars "fqdn_sshserver=my.ssh.example.com no_shell_pass=deploysecret" -U https://github.com/skosachiov/linux-remote-assistance
 
+## Screenshots
+
+![ra-screenshot-00](https://github.com/skosachiov/linux-remote-assistance/raw/main/ra-screenshot-00.jpg)
+
+![ra-screenshot-01](https://github.com/skosachiov/linux-remote-assistance/raw/main/ra-screenshot-01.jpg)
+
+![ra-screenshot-02](https://github.com/skosachiov/linux-remote-assistance/raw/main/ra-screenshot-02.jpg)
 
