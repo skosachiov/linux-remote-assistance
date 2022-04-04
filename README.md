@@ -9,16 +9,20 @@ The ansible code produces desktop files in the /usr/share/applications/ folder a
 ### Server configuration
 * Logon to the server and get root access
 * Install packages
-  * Ubuntu: apt install git ansible
-  * RHEL 8, Centos 8, Oracle linux 8: dnf install epel-relese; dnf install git ansible-core
+  * Ubuntu:
+    apt install git ansible
+  * RHEL 8, Centos 8, Oracle linux 8:
+    dnf install epel-relese; dnf install git ansible-core
 * echo "localhost ansible_connection=local" >> /etc/ansible/hosts
 * ansible-pull --tag server --extra-vars "fqdn_sshserver=my.ssh.example.com no_shell_pass=deploysecret" -U https://github.com/skosachiov/linux-remote-assistance
 
-### Client configuration
+### Client configuration (X11 display server, no Wayland support yet)
 * Logon to the client and get root access
 * Install packages
-  * Ubuntu: apt install git ansible
-  * RHEL 8, Centos 8, Oracle linux 8: dnf install epel-relese; dnf install git ansible-core
+  * Ubuntu:
+    apt install git ansible
+  * RHEL 8, Centos 8, Oracle linux 8:
+    dnf install epel-relese; dnf install git ansible-core
 * echo "localhost ansible_connection=local" >> /etc/ansible/hosts
 * ansible-pull --tag client --extra-vars "fqdn_sshserver=my.ssh.example.com no_shell_pass=deploysecret" -U https://github.com/skosachiov/linux-remote-assistance
 
