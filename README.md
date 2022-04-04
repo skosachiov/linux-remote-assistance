@@ -11,10 +11,8 @@ Tested on Ubunru 20.04 and Centos Stream 8.
 ### Server configuration
 1. Logon to the server and get root access
 2. Install packages \
-      Ubuntu: \
-         apt install git ansible \
-      RHEL 8, Centos 8, Oracle linux 8: \
-         dnf install epel-release; dnf install git ansible-core
+   Ubuntu: `apt install git ansible` \
+   RHEL 8, Centos 8, Oracle linux 8: `dnf install epel-release; dnf install git ansible-core`
 3. echo "localhost ansible_connection=local" >> /etc/ansible/hosts
 4. ansible-pull --tag server --extra-vars "fqdn_sshserver=my.ssh.example.com no_shell_pass=deploysecret" -U https://github.com/skosachiov/linux-remote-assistance
 
