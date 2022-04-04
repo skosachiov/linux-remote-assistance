@@ -8,13 +8,13 @@ The ansible code produces desktop files in the /usr/share/applications/ folder a
 
 ### Server configuration
 1. Logon to the server and get root access
-2. apt install git ansible (Ubuntu 20.04) or dnf install git ansible (RHEL 8, Centos 8, Oracle linux 8)
-3. echo "localhost ansible_connection=local" >> /etc/ansible/hosts
-4. ansible-pull --tag server --extra-vars "fqdn_sshserver=my.ssh.example.com no_shell_pass=deploysecret" -U https://github.com/skosachiov/linux-remote-assistance
+2. apt install git ansible (Ubuntu 20.04) or dnf install git ansible-core (RHEL 8, Centos 8, Oracle linux 8)
+4. echo "localhost ansible_connection=local" >> /etc/ansible/hosts
+5. ansible-pull --tag server --extra-vars "fqdn_sshserver=my.ssh.example.com no_shell_pass=deploysecret" -U https://github.com/skosachiov/linux-remote-assistance
 
 ### Client configuration
 1. Logon to the client and get root access
-2. apt install git ansible (Ubuntu 20.04) or dnf install git ansible (RHEL 8, Centos 8, Oracle linux 8)
+2. apt install git ansible (Ubuntu 20.04) or dnf install git ansible-core (RHEL 8, Centos 8, Oracle linux 8)
 3. echo "localhost ansible_connection=local" >> /etc/ansible/hosts
 4. ansible-pull --tag client --extra-vars "fqdn_sshserver=my.ssh.example.com no_shell_pass=deploysecret" -U https://github.com/skosachiov/linux-remote-assistance
 
