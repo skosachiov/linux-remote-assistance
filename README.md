@@ -32,3 +32,5 @@ Tested on Ubunru 20.04 and Centos Stream 8.
 
 ![ra-screenshot-02](https://github.com/skosachiov/linux-remote-assistance/raw/main/ra-screenshot-02.jpg)
 
+![ra-screenshot-10](https://github.com/skosachiov/linux-remote-assistance/raw/main/ra-screenshot-10.jpg)
+
