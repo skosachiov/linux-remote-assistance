@@ -6,7 +6,7 @@ The ansible code produces desktop files in the /usr/share/applications/ folder a
 
 ## Fast start (ansible automation)
 
-Tested on Ubunru 20.04 and Centos Stream 8.
+Tested on Ubuntu 20.04 and Centos Stream 8.
 
 ### Server configuration
 1. Logon to the server and get root access
