@@ -1,0 +1,12 @@
+namespace: "skosachiov"
+name: "linux_remote_assistance"
+version: "1.0.2"
+readme: "README.md"
+authors:
+    - "<skosachiov@gmail.com>" 
+license:
+    - "GPL-3.0-or-later"
+tags:
+    - linux_remote_assistance
+    - collection
+repository: "https://github.com/skosachiov/linux-remote-assistance"

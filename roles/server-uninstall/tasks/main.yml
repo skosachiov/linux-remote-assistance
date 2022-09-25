@@ -1,0 +1,10 @@
+- name: Delete no-shell user
+  block:
+    - name: Delete no-shell user
+      user:
+        name: no-shell
+        state: absent
+        remove: yes
+  tags:
+    - server
+    - delete_no_shell_user

@@ -1,0 +1,8 @@
+- name: Remove desktop files
+  file:
+    name: "{{item}}"
+    state: absent
+  with_items:  
+    - /usr/share/applications/remote-assistance-full-control.desktop
+    - /usr/share/applications/remote-assistance-view-only.desktop
+    - /usr/share/applications/remote-assistance-helpdesk.desktop

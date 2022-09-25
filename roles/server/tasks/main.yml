@@ -1,0 +1,26 @@
+- name: Create no-shell user
+  block:
+    - name: Create no-shell user Useradd
+      user:
+        name: no-shell
+        shell: /bin/false
+        password: "{{ no_shell_pass | password_hash('sha512') }}" 
+        update_password: on_create
+        generate_ssh_key: yes
+  tags:
+    - server
+    - create_no_shell_user
+
+- name: Ensure openssh-server is installed
+  block:
+    - name: Ensure openssh-server is installed Package
+      package:
+        name: openssh-server
+        state: present
+    - name: Ensure openssh-server is installed Started
+      service:
+        name: sshd
+        state: started
+  tags:
+    - server
+    - openssh_server_is_started
