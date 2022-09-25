@@ -4,7 +4,7 @@ The ansible code produces desktop files in the /usr/share/applications/ folder a
 
 ![Linux remote assistance](https://github.com/skosachiov/linux-remote-assistance/raw/main/docs/remote-assistance-scheme.png)
 
-## Fast start (ansible automation push mode)
+## Fast start (ansible automation, push mode)
 
 Tested on Ubuntu 20.04 and Centos Stream 8. Can be used for any Debian/RHEL-based distributions.
 
@@ -12,17 +12,15 @@ Tested on Ubuntu 20.04 and Centos Stream 8. Can be used for any Debian/RHEL-base
 
 1. Clone git repo `git clone https://github.com/skosachiov/linux-remote-assistance`
 2. Ensure sshd service started on client/server
-3. Use `su` become method for default CentOS/RHEL installation and `sudo` for Debian/Ubuntu
-
-`ansible-playbook -v -k -K -b --become-method=<method> -u user -e "fqdn_sshserver=my.ssh.example.com no_shell_pass=deploysecret" -i my.ssh.example.com, server.yml`
-
+3. Use `su` become method for default CentOS/RHEL installation and `sudo` for Debian/Ubuntu \
+`ansible-playbook -v -k -K -b --become-method=<method> -u user -e "fqdn_sshserver=my.ssh.example.com no_shell_pass=deploysecret" -i my.ssh.example.com, server.yml` \
 `ansible-playbook -v -k -K -b --become-method=<method> -u user -e "fqdn_sshserver=my.ssh.example.com no_shell_pass=deploysecret" -i client.example.com, client.yml`
 
 ### Uninstall
 
-1. Uninstall client
+1. Uninstall client \
 `ansible-playbook -v -k -K -b --become-method=<method> -u user -i client.example.com, client-uninstall.yml`
-2. Uninstall server
+2. Uninstall server \
 `ansible-playbook -v -k -K -b --become-method=<method> -u user -i my.ssh.example.com, server-uninstall.yml`
 
 ## Ansible automation pull mode
