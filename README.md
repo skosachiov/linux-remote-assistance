@@ -57,3 +57,6 @@ Tested on Ubuntu 20.04 and Centos Stream 8. Can be used for any Debian/RHEL-base
 
 ![ra-screenshot-10](https://github.com/skosachiov/linux-remote-assistance/raw/main/docs/screenshots/ra-screenshot-10.jpg)
 
+## A note on security
+
+Obviously, we can set a legitimate ssh-server fingerprint on each workstation and not use the StrictHostKeyChecking=no option.
