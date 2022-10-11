@@ -6,7 +6,7 @@ The ansible code produces desktop files in the /usr/share/applications/ folder a
 
 ## Fast start (ansible automation, push mode)
 
-Tested on Ubuntu 20.04 and 22.04 and Centos Stream 8. Can be used for any Debian/RHEL-based distributions.
+Tested on Ubuntu 20.04/22.04 and Centos Stream 8. Can be used for any Debian/RHEL-based distributions.
 
 ### Install
 
@@ -25,7 +25,7 @@ Tested on Ubuntu 20.04 and 22.04 and Centos Stream 8. Can be used for any Debian
 
 ## Ansible automation pull mode
 
-Tested on Ubuntu 20.04 and Centos Stream 8. Can be used for any Debian/RHEL-based distributions.
+Tested on Ubuntu 20.04/22.04 and Centos Stream 8. Can be used for any Debian/RHEL-based distributions.
 
 ### Server configuration
 1. Logon to the server and get root access
