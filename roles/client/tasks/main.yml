@@ -13,20 +13,20 @@
           - tigervnc
           - tigervnc-server-minimal
         state: present
-      when: ansible_distribution == 'CentOS' or ansible_distribution == 'Red Hat Enterprise Linux'
+      when: ansible_os_family in ['RedHat', 'Rocky']
     - name: Install client dependencies Tigervnc deb
       package:
         name:
           - tigervnc-viewer
           - tigervnc-common
         state: present
-      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+      when: ansible_os_family in ['Debian']
     - name: Install client dependencies Tigervnc tools deb
       package:
         name:
           - tigervnc-tools
         state: present
-      when: ansible_lsb.codename == 'jammy'
+      when: ansible_distribution == 'Ubuntu' and ansible_distribution_major_version|int >= 22
   tags:
     - client
     - install_client_dependencies
