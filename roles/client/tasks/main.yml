@@ -62,6 +62,7 @@
         var_view_only: ""
     - name: Install client desktop files Full control
       copy:
+        mode: u=rw,g=r,o=r
         dest: /usr/share/applications/remote-assistance-full-control.desktop
         content: |
           [Desktop Entry]
@@ -76,6 +77,7 @@
         var_view_only: "--viewonly"
     - name: Install client desktop files View only
       copy:
+        mode: u=rw,g=r,o=r
         dest: /usr/share/applications/remote-assistance-view-only.desktop
         content: |
           [Desktop Entry]
@@ -87,6 +89,7 @@
           StartupNotify=false
     - name: Install client desktop files Helpdesk
       copy:
+        mode: u=rw,g=r,o=r
         dest: /usr/share/applications/remote-assistance-helpdesk.desktop
         content: |
           [Desktop Entry]
