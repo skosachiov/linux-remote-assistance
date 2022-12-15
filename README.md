@@ -47,6 +47,22 @@ Tested on Ubuntu 20.04/22.04 and Centos Stream 8. Can be used for any Debian/RHE
 
 `ansible-pull -U https://github.com/skosachiov/linux-remote-assistance/playbooks/client-uninstall.yml`
 
+## Operation through port 443 through an existing HTTPS server, port 22 is closed on the firewall
+
+### HTTPS server configuration
+
+a2enmod ssl \
+a2enmod proxy_connect
+
+Add to coniguration /etc/apache2/sites-enabled/default-ssl.conf
+
+`ProxyRequests On` \
+`AllowCONNECT 22`
+
+### Add to ssh connection command:
+
+`ssh ... -o ProxyCommand="proxytunnel -z -E -p {{fqdn_sshserver}}:443 -d 127.0.0.1:22" ...`
+
 ## Screenshots
 
 ![ra-screenshot-00](https://github.com/skosachiov/linux-remote-assistance/raw/main/docs/screenshots/ra-screenshot-00.jpg)
