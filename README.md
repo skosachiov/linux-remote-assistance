@@ -61,6 +61,8 @@ Add to coniguration /etc/apache2/sites-enabled/default-ssl.conf
 
 ### Add to ssh connection command:
 
+`apt/dnf install proxytunnel`
+
 `ssh ... -o ProxyCommand="proxytunnel -z -E -p {{fqdn_sshserver}}:443 -d 127.0.0.1:22" ...`
 
 ## Screenshots
