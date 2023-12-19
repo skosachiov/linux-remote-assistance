@@ -4,12 +4,27 @@
       user:
         name: no-shell
         shell: /bin/false
-        password: "{{ no_shell_pass | password_hash('sha512') }}" 
+        password: "{{ no_shell_pass | password_hash('sha512') }}"
         update_password: on_create
         generate_ssh_key: yes
   tags:
     - server
     - create_no_shell_user
+
+- name: Ensure openssh-server permit open localhost
+  blockinfile:
+    dest: /etc/ssh/sshd_config
+    marker_begin: BEGIN_NO_SHELL
+    marker_end: END_NO_SHELL
+    block: |
+      Match User no-shell
+        X11Forwarding no
+        PermitOpen localhost:* 127.0.0.1:*
+        PermitTTY no
+    insertafter: EOF
+  tags:
+    - server
+    - permitopen_localhost
 
 - name: Ensure openssh-server is installed
   block:
